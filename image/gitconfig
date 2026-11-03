@@ -1,0 +1,19 @@
+# /etc/gitconfig: git's settings for everyone on the guest.
+[init]
+	defaultBranch = main
+[core]
+	editor = nano
+	# Short output prints and returns to the prompt; long output pages, and q gets out.
+	pager = less -FRX
+[color]
+	ui = auto
+[safe]
+	# The checks run as root, on repositories the player owns.
+	directory = *
+[advice]
+	detachedHead = true
+[pull]
+	rebase = false
+[url "/home/player/work/server/"]
+	# Chapter 5's server is a folder in ~/work, standing in for GitHub: server:recipes.git is ~/work/server/recipes.git.
+	insteadOf = server:

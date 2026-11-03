@@ -1,0 +1,28 @@
+# The game reads the last command you ran from this file when you press Check.
+HISTFILE=/var/game/history
+HISTCONTROL=
+# Timestamps mark where each entry starts, so a multi-line command reads back as one command.
+HISTTIMEFORMAT='%s '
+HISTSIZE=1000
+# The escape sequence is invisible: it tells the page a command has finished, so the commit graph can redraw.
+PROMPT_COMMAND='history -a; printf "\e]777;hash\a"'
+# The prompt shows the branch you're on (the commit when HEAD is detached), and a merge or rebase in progress.
+__branch() {
+  local g b s=
+  g=$(git rev-parse --git-dir 2>/dev/null) || return
+  b=$(git symbolic-ref --short -q HEAD) || b=$(git rev-parse --short HEAD 2>/dev/null)
+  if [ -d "$g/rebase-merge" ]; then b=$(sed 's#^refs/heads/##' "$g/rebase-merge/head-name"); s='|REBASING'
+  elif [ -d "$g/rebase-apply" ]; then s='|REBASING'
+  elif [ -f "$g/MERGE_HEAD" ]; then s='|MERGING'
+  elif [ -f "$g/CHERRY_PICK_HEAD" ]; then s='|CHERRY-PICKING'
+  elif [ -f "$g/REVERT_HEAD" ]; then s='|REVERTING'
+  elif [ -f "$g/BISECT_LOG" ]; then s='|BISECTING'
+  fi
+  printf ' (%s%s)' "$b" "$s"
+}
+PS1='\[\e[32m\]\w\[\e[33m\]$(__branch)\[\e[0m\] \$ '
+# Like most distros: your own commands go in ~/bin, which new shells put on PATH once it exists.
+[ -d ~/bin ] && PATH="$HOME/bin:$PATH"
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+cd ~/work 2>/dev/null

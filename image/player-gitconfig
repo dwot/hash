@@ -1,0 +1,4 @@
+# ~/.gitconfig: who your commits say they're from. Change it with git config --global.
+[user]
+	name = Sam Player
+	email = sam@example.com
