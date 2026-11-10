@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hash.plaintext.guru/sitemap.xml

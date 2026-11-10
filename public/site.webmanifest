@@ -1,0 +1,20 @@
+{
+  "name": "Hash \u00b7 plaintext.guru",
+  "short_name": "Hash",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#fbfbf8",
+  "theme_color": "#6aaa64",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
